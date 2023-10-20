@@ -1,0 +1,7 @@
+flutter_native_splash:
+
+
+  background_image: "assets/images/splash_screen.png"
+
+
+  background_image_dark: "assets/images/splash_screen_dark.png"
