@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_app/my_theme.dart';
 
+import '../../model/task.dart';
+
 class TaskWidgetItem extends StatelessWidget {
-  const TaskWidgetItem({super.key});
+
+  Task task;
+  TaskWidgetItem({required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +21,17 @@ class TaskWidgetItem extends StatelessWidget {
           motion: const ScrollMotion(),
           children: [
             SlidableAction(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),topLeft:Radius.circular(12) ),
-              onPressed: (context){},
-              backgroundColor:MyTheme.redColor,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  topLeft: Radius.circular(12)),
+              onPressed: (context) {},
+              backgroundColor: MyTheme.redColor,
               foregroundColor: MyTheme.whiteColor,
               icon: Icons.delete,
               label: 'Delete',
             ),
             SlidableAction(
-              onPressed: (context){},
+              onPressed: (context) {},
               backgroundColor: MyTheme.primaryColor,
               foregroundColor: Colors.white,
               icon: Icons.edit,
@@ -34,30 +40,41 @@ class TaskWidgetItem extends StatelessWidget {
           ],
         ),
         child: Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Container(
                 width: 5,
-                height:80,
+                height: 80,
                 color: MyTheme.primaryColor,
               ),
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [Text('Task 1',style: Theme.of(context).textTheme.titleMedium!.copyWith(color:MyTheme.primaryColor )), Text('desc')],
+                children: [
+                  Text(task.title??'',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(color: MyTheme.primaryColor)),
+                  Text(task.description??'')
+                ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                padding: EdgeInsets.symmetric(vertical:4,horizontal: 18 ),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)
-                  ,color: MyTheme.primaryColor),
-                child: Icon(Icons.check,color:MyTheme.whiteColor,size: 30, ),
+                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 18),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: MyTheme.primaryColor),
+                child: Icon(
+                  Icons.check,
+                  color: MyTheme.whiteColor,
+                  size: 30,
+                ),
               ),
             )
           ],
